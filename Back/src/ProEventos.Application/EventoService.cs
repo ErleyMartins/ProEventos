@@ -32,13 +32,12 @@ namespace ProEventos.Application
             }
         }
 
-        public async Task<Evento> UploadEventos(int id, Evento model)
+        public async Task<Evento> UpdateEventos(int id, Evento model)
         {
             try
             {
                 var evento = await _evento.GetEventoByIdAsync(id);
                 if (evento == null) return null;
-
 
                 model.Id = evento.Id;
 

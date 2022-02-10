@@ -16,7 +16,7 @@ namespace ProEventos.Persistence
         }
         public async Task<Evento[]> GetAllEventosAsync(bool includePalestrantes = false)
         {
-            IQueryable<Evento> query = _context.Eventos
+            IQueryable<Evento> query = _context.Eventos.AsNoTracking()
                 .Include(x => x.Lotes)
                 .Include(x => x.RedesSociais);
 
@@ -27,13 +27,13 @@ namespace ProEventos.Persistence
                     .ThenInclude(pe => pe.Palestrante);
             }
 
-            query.OrderBy(x => x.Id);
+            query = query.OrderBy(x => x.Id);
 
             return await query.ToArrayAsync();
         }
         public async Task<Evento[]> GetAllEventosByTemaAsync(string tema, bool includePalestrantes = false)
         {
-            IQueryable<Evento> query = _context.Eventos
+            IQueryable<Evento> query = _context.Eventos.AsNoTracking()
                 .Include(x => x.Lotes)
                 .Include(x => x.RedesSociais);
 
@@ -44,13 +44,13 @@ namespace ProEventos.Persistence
                         .ThenInclude(pe => pe.Palestrante);
                 }
                 
-                query.OrderBy(x => x.Tema).Where(x => x.Tema.ToLower().Contains(tema.ToLower()));
+                query = query.OrderBy(x => x.Tema).Where(x => x.Tema.ToLower().Contains(tema.ToLower()));
 
                 return await query.ToArrayAsync();
         }
         public async Task<Evento> GetEventoByIdAsync(int id, bool includePalestrantes = false)
         {
-            IQueryable<Evento> query = _context.Eventos
+            IQueryable<Evento> query = _context.Eventos.AsNoTracking()
                 .Include(x => x.Lotes)
                 .Include(x => x.RedesSociais);
 
@@ -61,7 +61,7 @@ namespace ProEventos.Persistence
                         .ThenInclude(pe => pe.Palestrante);
                 }
                 
-                query.Where(x => x.Id == id);
+                query = query.Where(x => x.Id == id);
 
                 return await query.FirstOrDefaultAsync();
         }
