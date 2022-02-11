@@ -15,6 +15,7 @@
       <th>#</th>
       <th>
         <button class="btn btn-sm btn-outline-light" (click)="isCollapsed = !isCollapsed">
+          <i class="{{ (isCollapsed) ? 'fa fa-eye' : 'fa fa-eye-slash' }}"></i>
           {{ (isCollapsed) ? 'Exibir' : 'Ocultar' }}
         </button>
       </th>
@@ -28,7 +29,7 @@
   </thead>
   <tbody *ngIf="eventos && eventos.length">
     <tr *ngFor="let evento of eventosFiltrado">
-      <td>{{ evento.eventoID }}</td>
+      <td>{{ evento.id }}</td>
       <td>
         <img src="/assets/{{ evento.imagemURL }}" alt=""
         [style.width.px]="widthImg" [style.margin.px]="marginImg" [collapse]="isCollapsed" [isAnimated]="true"
@@ -36,18 +37,17 @@
       </td>
       <td>{{ evento.tema }}</td>
       <td>{{ evento.local }}</td>
-      <td>{{ evento.dataEvento }}</td>
+      <td>{{ evento.dataEvento | DateTimeFormat}}</td>
       <td>{{ evento.qtdPessoa }}</td>
-      <td>{{ evento.lote }}</td>
+      <td>{{ evento.lotes[0].nome | uppercase}}</td>
       <td>
-        <div class="btn-group">
-          <button class="btn btn-sm btn-outline-primary">Opções</button>
-          <button class="btn btn-sm btn-outline-danger">Excluir</button>
-        </div>
+          <button class="btn  btn-primary btn-sm me-2"><i class="fa fa-edit"></i></button>
+
+          <button class="btn  btn-danger btn-sm"><i class="fa fa-trash"></i></button>
       </td>
     </tr>
   </tbody>
-  <tfoot *ngIf="!eventos && !eventos.length">
+  <tfoot *ngIf="eventos === [] && !eventos.length">
     <tr>
       <td colspan="8" class="text-center mt-2">
         <h4>Nenhum evento encontrado!</h4>
