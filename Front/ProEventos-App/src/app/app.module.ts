@@ -16,11 +16,13 @@ import { NgxSpinnerModule } from 'ngx-spinner';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { EventosComponent } from './components/eventos/eventos.component';
+import { EventoDetalhesComponent } from './components/eventos/evento-detalhes/evento-detalhes.component';
+import { EventoListaComponent } from './components/eventos/evento-lista/evento-lista.component';
 import { PalestrantesComponent } from './components/palestrantes/palestrantes.component';
 import { NavComponent } from './shared/nav/nav.component';
 import { TituloComponent } from './shared/titulo/titulo.component';
 import { ContatoComponent } from './components/contato/contato.component';
-import { PerfilComponent } from './components/perfil/perfil.component';
+import { PerfilComponent } from './components/user/perfil/perfil.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 
 // Service
@@ -28,6 +30,9 @@ import { EventoService } from './services/evento.service';
 
 // PIPE
 import { DateTimeFormatPipe } from './helpers/DateTimeFormat.pipe';
+import { UserComponent } from './components/user/user.component';
+import { LoginComponent } from './components/user/login/login.component';
+import { RegistrationComponent } from './components/user/registration/registration.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +44,12 @@ import { DateTimeFormatPipe } from './helpers/DateTimeFormat.pipe';
     ContatoComponent,
     PerfilComponent,
     DashboardComponent,
-    DateTimeFormatPipe
+    DateTimeFormatPipe,
+    EventoDetalhesComponent,
+    EventoListaComponent,
+    UserComponent,
+    LoginComponent,
+    RegistrationComponent
   ],
   imports: [
     BrowserModule,
