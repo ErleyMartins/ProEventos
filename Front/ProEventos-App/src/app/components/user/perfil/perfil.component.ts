@@ -10,7 +10,6 @@ import { ValidatorField } from 'src/app/helpers/ValidatorField';
 export class PerfilComponent implements OnInit {
 
   public form!: FormGroup;
-  public loading: false;
 
   constructor(private fb: FormBuilder) { }
 
@@ -36,6 +35,11 @@ export class PerfilComponent implements OnInit {
       senha: ['', [Validators.minLength(8), Validators.required]],
       confirmeSenha: ['', Validators.required]
     }, formOptions);
+  }
+
+  public resetForm(event: any): void {
+    event.preventDefault();
+    this.form.reset();
   }
 
 }
