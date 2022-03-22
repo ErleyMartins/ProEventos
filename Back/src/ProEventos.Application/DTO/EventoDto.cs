@@ -9,13 +9,13 @@ namespace ProEventos.Application.DTO
         
         public string Local { get; set; }
         
-        public string DataEvento { get; set; }
+        public System.DateTime DataEvento { get; set; }
 
         [
             Required(ErrorMessage = "O campo {0} é obrigatório."),
             //MinLength(3, ErrorMessage = "O campo {0} deve ter no mínimo 3 caracteres."),
             //MaxLength(50, ErrorMessage = "O campo {0} deve ter no maxímo 50 caracteres."),
-            StringLength(50, MinimumLength = 3)
+            StringLength(100, MinimumLength = 3)
         ]
         public string Tema { get; set; }
 

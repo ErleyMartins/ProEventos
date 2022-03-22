@@ -32,7 +32,7 @@
         <th>Data</th>
         <th class="d-none d-md-table-cell">Qtd. Pessoas</th>
         <th class="d-none d-md-table-cell">Lote</th>
-        <th>Opções</th>
+        <th>Excluir</th>
       </tr>
     </thead>
     <tbody *ngIf="eventos && eventos.length">
@@ -47,9 +47,9 @@
         <td class="d-none d-md-table-cell">{{ evento.local }}</td>
         <td>{{ evento.dataEvento | DateTimeFormat}}</td>
         <td class="d-none d-md-table-cell">{{ evento.qtdPessoa }}</td>
-        <td class="d-none d-md-table-cell">{{ evento.lotes[0].nome | uppercase}}</td>
+        <td class="d-none d-md-table-cell">{{ evento.lotes[0]?.nome | uppercase}}</td>
         <td>
-            <button class="btn  btn-danger btn-lg" tooltip="Excluir" (click)="openModal(template)"><i class="fa fa-trash"></i></button>
+            <button class="btn  btn-danger btn-lg" tooltip="Excluir" (click)="openModal($event, template, evento.id)"><i class="fa fa-trash"></i></button>
         </td>
       </tr>
     </tbody>
@@ -65,7 +65,7 @@
 
 <ng-template #template>
   <div class="modal-body text-center">
-    <p>Voce tem certeza que deseja deletar o evento?</p>
+    <p>Voce tem certeza que deseja deletar o evento de codigo {{ eventoId }}?</p>
     <button type="button" class="btn btn-default" (click)="confirm()" >Sim</button>
     <button type="button" class="btn btn-primary" (click)="decline()" >Não</button>
   </div>
