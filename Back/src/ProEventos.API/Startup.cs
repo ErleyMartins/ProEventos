@@ -40,9 +40,11 @@ namespace ProEventos.API
             // Declarações Da persistencia
             services.AddScoped<IGeralPersistence, GeralPersistence>();
             services.AddScoped<IEventoPersistence, EventoPersistence>();
+            services.AddScoped<ILotePersistence, LotePersistence>();
 
             // Declaraçao dos Services/Application
             services.AddScoped<IEventoService, EventoService>();
+            services.AddScoped<ILoteService, LoteService>();
 
             services.AddCors();
             
